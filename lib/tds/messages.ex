@@ -119,9 +119,9 @@ defmodule Tds.Messages do
     encode_packets(0x12, data, [])
     # encode_header(0x12, data)<>data
   end
-
+  
   defp encode(msg_login(params: params), _env) do
-    tds_version = <<0x04, 0x00, 0x00, 0x74>>
+    tds_version = <<0x03, 0x00, 0x0B, 0x73>>
     message_size = <<@tds_pack_size::little-size(4)-unit(8)>>
     client_prog_ver = <<0x04, 0x00, 0x00, 0x07>>
     client_pid = <<0x00, 0x10, 0x00, 0x00>>
