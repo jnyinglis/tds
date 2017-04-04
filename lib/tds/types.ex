@@ -8,10 +8,10 @@ defmodule Tds.Types do
   alias Tds.DateTime2
 
   @year_1900_days :calendar.date_to_gregorian_days({1900,1,1})
-  @days_in_month 30
+# @days_in_month 30
   @secs_in_min 60
   @secs_in_hour 60 * @secs_in_min
-  @secs_in_day 24 * @secs_in_hour
+# @secs_in_day 24 * @secs_in_hour
 
   @tds_data_type_null           0x1F
   @tds_data_type_tinyint        0x30
@@ -109,9 +109,9 @@ defmodule Tds.Types do
                     @tds_data_type_datetime2n, 
                     @tds_data_type_datetimeoffsetn] 
 
-  @tds_plp_marker 0xffff
+# @tds_plp_marker 0xffff
   @tds_plp_null 0xffffffffffffffff
-  @tds_plp_unknown 0xfffffffffffffffe
+# @tds_plp_unknown 0xfffffffffffffffe
 
   #
   #  Data Type Decoders
@@ -228,14 +228,14 @@ defmodule Tds.Types do
       data_type_code == @tds_data_type_image ->
         # TODO NumBarts Reader
         <<numparts::signed-8, new_tail::binary>> = new_tail
-        new_tail = Enum.reduce([1..numparts], new_tail, fn(_, acc) ->
+        _new_tail = Enum.reduce([1..numparts], new_tail, fn(_, acc) ->
           <<size::unsigned-16, _str::size(size)-unit(16), new_tail::binary>> = acc
           new_tail
         end)
         col_info = col_info
                    |> Map.put(:data_reader, :bytelen)
       data_type_code == @tds_data_type_variant ->
-        col_info = col_info
+        _col_info = col_info
                    |> Map.put(:data_reader, :variant)
       true -> nil
     end
@@ -1100,10 +1100,10 @@ defmodule Tds.Types do
   Data Encoding DateTime Types
   """
   @year_1900_days :calendar.date_to_gregorian_days({1900,1,1})
-  @days_in_month 30
+# @days_in_month 30
   @secs_in_min 60
   @secs_in_hour 60 * @secs_in_min
-  @secs_in_day 24 * @secs_in_hour
+# @secs_in_day 24 * @secs_in_hour
   @max_time_scale 7
   @usecs_in_sec 1_000_000
 

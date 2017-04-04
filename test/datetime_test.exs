@@ -11,7 +11,7 @@ defmodule DatetimeTest do
 
   setup do
     opts = [
-      hostname: "sqlserver.local",
+      hostname: "192.168.12.239",
       username: "mssql",
       password: "mssql",
       database: "test"
